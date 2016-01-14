@@ -11,13 +11,13 @@
       password={{ ucsm_pass }}
     register: handle_output
 
-  - name: Configure Dns Server {{ ucsm_ip }}
+  - name: Remove Dns Server {{ ucsm_ip }}
     admin_dns:
       name="8.8.8.8"
-      state="present"
+      state="absent"
       handle={{ handle_output.handle }}
 
-  - name: Configure Qos Policy {{ ucsm_ip }}
+  - name: Remove Qos Policy {{ ucsm_ip }}
     network_qos_class:
       priority="platinum"
       cos="6"
@@ -25,7 +25,7 @@
       weight="best-effort"
       mtu="fc"
       multicast_optimize="yes"
-      state="present"
+      state="absent"
       handle={{ handle_output.handle }}
 
   - name: Logout {{ ucsm_ip }}
