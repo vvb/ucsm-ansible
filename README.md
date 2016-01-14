@@ -2,7 +2,7 @@
 
 ##### Pre-requisites:
 * Install https://github.com/vijayvikrant/ucsmsdk.git
-* Install https://github.com/vijayvikrant/ucsmsdk-samples.git
+* Install https://github.com/vijayvikrant/ucsmsdk_samples.git
 * Ansible
 
 
