@@ -7,6 +7,7 @@
 
 
 ##### Usage:
+```
 vagrant@vvb:~$ git clone https://github.com/vijayvikrant/ucsm-ansible.git
 vagrant@vvb:~$ cd ucsm-ansible 
 vagrant@vvb:~/ucsm-ansible$ ansible-playbook ucsm-common-conf.yml
@@ -26,4 +27,4 @@ PLAY RECAP *********************************************************************
 ucspe                      : ok=3    changed=0    unreachable=0    failed=0
 
 vagrant@vvb:~/ucsm-ansible$
-
+```
