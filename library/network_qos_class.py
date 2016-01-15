@@ -46,7 +46,7 @@ EXAMPLES = '''
     state=absent
 '''
 
-from ucsmsdk_samples.network.qos import qos_class_enable, qos_class_disable, qos_class_exists 
+from ucsmsdk_samples.network.qos import qos_class_enable, qos_class_disable, qos_class_conf_drift
 from ucsmsdk.ucshandle import UcsHandle
 
 def network_qos_class(module):
@@ -64,11 +64,11 @@ def network_qos_class(module):
         mtu = module.params.get('mtu')
         multicast_optimize = module.params.get('multicast_optimize')
 
-        exists = qos_class_exists(ucs_handle, priority=priority, cos=cos,
+        drift_detected = qos_class_conf_drift(ucs_handle, priority=priority, cos=cos,
                                   drop=drop, weight=weight, mtu=mtu,
                                   multicast_optimize=multicast_optimize,
-                                  admin_state="enabled", match_props=True)
-        if not exists:
+                                  admin_state="enabled")
+        if drift_detected:
             mo = qos_class_enable(ucs_handle, priority=priority, cos=cos,
                                      drop=drop, weight=weight, mtu=mtu,
                                      multicast_optimize=multicast_optimize)
@@ -78,15 +78,15 @@ def network_qos_class(module):
             results["created"] = False
             results["changed"] = False
     else:
-        exists = qos_class_exists(ucs_handle, priority=priority, 
-                                  admin_state="disabled", match_props=False)
-        if exists:
+        drift_detected = qos_class_conf_drift(ucs_handle, priority=priority,
+                                        admin_state="disabled")
+        if drift_detected:
             mo = qos_class_disable(ucs_handle, priority=priority)
-            results["created"] = False 
+            results["created"] = False
             results["changed"] = True
         else:
-            results["created"] = False 
-            results["changed"] = False 
+            results["created"] = False
+            results["changed"] = False
 
     results['state'] = state
     return results
