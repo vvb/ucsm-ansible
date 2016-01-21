@@ -1,0 +1,67 @@
+---
+- hosts: ucs
+  connection: local
+  gather_facts: no
+
+  tasks:
+  - name: Login {{ucsm_ip}}
+    ucs_login:
+      ip={{ ucsm_ip }}
+      username={{ ucsm_user }}
+      password={{ ucsm_pass }}
+    register: handle_output
+
+  - name: Configure Dns Server {{ ucsm_ip }}
+    admin_dns:
+      name="8.8.8.8"
+      state="present"
+      handle={{ handle_output.handle }}
+
+  - name: Configure Qos Class Platinum  {{ ucsm_ip }}
+    network_qos_class:
+      priority="platinum"
+      cos="5"
+      drop="drop"
+      weight="4"
+      mtu="normal"
+      multicast_optimize="no"
+      state="present"
+      handle={{ handle_output.handle }}
+
+  - name: Configure Qos Class Gold {{ ucsm_ip }}
+    network_qos_class:
+      priority="gold"
+      cos="4"
+      drop="drop"
+      weight="4"
+      mtu="9216"
+      multicast_optimize="no"
+      state="present"
+      handle={{ handle_output.handle }}
+
+  - name: Configure Qos Class Silver {{ ucsm_ip }}
+    network_qos_class:
+      priority="silver"
+      cos="2"
+      drop="drop"
+      weight="best-effort"
+      mtu="normal"
+      multicast_optimize="yes"
+      state="present"
+      handle={{ handle_output.handle }}
+
+  - name: Configure Qos Class Bronze {{ ucsm_ip }}
+    network_qos_class:
+      priority="bronze"
+      cos="1"
+      drop="drop"
+      weight="best-effort"
+      mtu="9216"
+      multicast_optimize="no"
+      state="present"
+      handle={{ handle_output.handle }}
+
+  - name: Logout {{ ucsm_ip }}
+    ucs_logout:
+      handle={{ handle_output.handle }}
+
