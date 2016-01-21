@@ -44,20 +44,10 @@ PLAY RECAP *********************************************************************
 ucspe                      : ok=7    changed=5    unreachable=0    failed=0
 
 vagrant@vvb:~/work/ucsm-ansible$
-vagrant@vvb:~/work/ucsm-ansible$ ansible-playbook ucsm-common-conf.yml
+
+vagrant@vvb:~/work/ucsm-ansible$ ansible-playbook fi-setup.yml
 
 PLAY ***************************************************************************
-
-TASK [Login 10.104.223.192] ****************************************************
-ok: [ucspe]
-
-TASK [Configure Dns Server 10.104.223.192] *************************************
-changed: [ucspe]
-
-TASK [Configure Qos Policy 10.104.223.192] *************************************
-changed: [ucspe]
-
-TASK [Logout 10.104.223.192] ***************************************************Y ***************************************************************************
 
 TASK [Login 10.104.223.192] ****************************************************
 ok: [ucspe]
@@ -82,73 +72,6 @@ ok: [ucspe]
 
 PLAY RECAP *********************************************************************
 ucspe                      : ok=7    changed=0    unreachable=0    failed=0
-
-vagrant@vvb:~/work/ucsm-ansible$
-ok: [ucspe]
-
-PLAY RECAP *********************************************************************
-ucspe                      : ok=4    changed=2    unreachable=0    failed=0
-
-
-vagrant@vvb:~/work/ucsm-ansible$
-vagrant@vvb:~/work/ucsm-ansible$ ansible-playbook ucsm-common-conf.yml
-
-PLAY ***************************************************************************
-
-TASK [Login 10.104.223.192] ****************************************************
-ok: [ucspe]
-
-TASK [Configure Dns Server 10.104.223.192] *************************************
-ok: [ucspe]
-
-TASK [Configure Qos Policy 10.104.223.192] *************************************
-ok: [ucspe]
-
-TASK [Logout 10.104.223.192] ***************************************************
-ok: [ucspe]
-
-PLAY RECAP *********************************************************************
-ucspe                      : ok=4    changed=0    unreachable=0    failed=0
-
-vagrant@vvb:~/work/ucsm-ansible$
-vagrant@vvb:~/work/ucsm-ansible$ ansible-playbook ucsm-common-conf-cleanup.yml
-
-PLAY ***************************************************************************
-
-TASK [Login 10.104.223.192] ****************************************************
-ok: [ucspe]
-
-TASK [Remove Dns Server 10.104.223.192] ****************************************
-changed: [ucspe]
-
-TASK [Remove Qos Policy 10.104.223.192] ****************************************
-changed: [ucspe]
-
-TASK [Logout 10.104.223.192] ***************************************************
-ok: [ucspe]
-
-PLAY RECAP *********************************************************************
-ucspe                      : ok=4    changed=2    unreachable=0    failed=0
-
-vagrant@vvb:~/work/ucsm-ansible$
-vagrant@vvb:~/work/ucsm-ansible$ ansible-playbook ucsm-common-conf-cleanup.yml
-
-PLAY ***************************************************************************
-
-TASK [Login 10.104.223.192] ****************************************************
-ok: [ucspe]
-
-TASK [Remove Dns Server 10.104.223.192] ****************************************
-ok: [ucspe]
-
-TASK [Remove Qos Policy 10.104.223.192] ****************************************
-ok: [ucspe]
-
-TASK [Logout 10.104.223.192] ***************************************************
-ok: [ucspe]
-
-PLAY RECAP *********************************************************************
-ucspe                      : ok=4    changed=0    unreachable=0    failed=0
 
 vagrant@vvb:~/work/ucsm-ansible$
 ```
